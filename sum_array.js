@@ -4,7 +4,14 @@ const sumArray = (numberArray) => {
     return 0;
   }
 
-  return numberArray.pop() + sumArray(numberArray);
+  let addNumber = numberArray.shift();
+  if (typeof addNumber === 'object') {
+    return sumArray(addNumber) + sumArray(numberArray);
+  } else {
+    return addNumber + sumArray(numberArray);
+  }
 }
 
 console.log(sumArray([1,2,3,9]));
+console.log(sumArray([1, [2, 3, 4]]));
+console.log(sumArray([[2, 3, 4], [1, 1], 1]));
